@@ -1,6 +1,7 @@
 package pl.jwrabel.trainings.javandwro3.gui.cars;
 
 import javax.swing.*;
+import java.util.List;
 
 /**
  * Created by jakubwrabel on 28.04.2017.
@@ -16,6 +17,9 @@ public class CarWindow extends JFrame {
 		setLayout(null);
 
 		carRepository = new CarRepository();
+
+		List<Car> cars = carRepository.getCars();
+
 
 		String[] data = new String[]{"A", "B", "C"};
 		JList<String> jList = new JList<>(data);
