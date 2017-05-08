@@ -25,6 +25,9 @@ public class CarWindow extends JFrame {
 		carsJList.setLocation(0, 0);
 		add(carsJList);
 
+		// WYSWIETLANIE KOMUNIKATU BŁĘDU
+		JOptionPane.showMessageDialog(carsJList, "ZŁE DANE", "BŁĄD", JOptionPane.ERROR_MESSAGE);
+
 		updateCarsListData();
 
 		JButton btnShow = new JButton("Pokaż");
@@ -99,6 +102,9 @@ public class CarWindow extends JFrame {
 				carsJList.repaint();
 				// lub
 				updateCarsListData();
+
+
+
 			}
 		});
 
