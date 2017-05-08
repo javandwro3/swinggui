@@ -10,6 +10,7 @@ import java.util.List;
 public class CarWindow extends JFrame {
 
 	private CarRepository carRepository;
+	private JList<Car> carsJList;
 
 	public CarWindow() {
 		setVisible(true);
@@ -19,18 +20,12 @@ public class CarWindow extends JFrame {
 
 		carRepository = new CarRepository();
 
-		List<Car> cars = carRepository.getCars();
+		carsJList = new JList<>();
+		carsJList.setSize(200, 300);
+		carsJList.setLocation(0, 0);
+		add(carsJList);
 
-		// "ZAMIANA" listy na tablicę
-		Car[] carsArray = new Car[cars.size()];
-		for (int i = 0; i < carsArray.length; i++) {
-			carsArray[i] = cars.get(i);
-		}
-
-		JList<Car> jList = new JList<>(carsArray);
-		jList.setSize(200, 300);
-		jList.setLocation(0, 0);
-		add(jList);
+		updateCarsListData();
 
 		JButton btnShow = new JButton("Pokaż");
 		btnShow.setSize(200, 50);
@@ -77,10 +72,33 @@ public class CarWindow extends JFrame {
 		txtPower.setLocation(300, 350);
 		add(txtPower);
 
+		JButton btnCreateCar = new JButton("Stwórz nowy");
+		btnCreateCar.setSize(200,50);
+		btnCreateCar.setLocation(400,400);
+		add(btnCreateCar);
+
+		btnCreateCar.addActionListener(new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String model = txtModel.getText();
+				String brand = txtBrand.getText();
+				String year = txtYear.getText();
+				double power = Double.parseDouble(txtPower.getText());
+
+				Car car = new Car(brand, model, year, power);
+
+				carRepository.getCars().add(car);
+
+				updateCarsListData();
+			}
+		});
+
+
+
 		btnShow.addActionListener(new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Car selectedCar = jList.getSelectedValue();
+				Car selectedCar = carsJList.getSelectedValue();
 				System.out.println(selectedCar);
 
 				if (selectedCar != null) {
@@ -99,6 +117,19 @@ public class CarWindow extends JFrame {
 //				JOptionPane.showMessageDialog(btnShow, selectedCar);
 			}
 		});
+
+		repaint();
+	}
+
+	private void updateCarsListData() {
+		List<Car> carsFromRepository = carRepository.getCars();
+
+		Car[] carsArray = new Car[carsFromRepository.size()];
+		for (int i = 0; i < carsArray.length; i++) {
+			carsArray[i] = carsFromRepository.get(i);
+		}
+
+		carsJList.setListData(carsArray);
 	}
 
 	public static void main(String[] args) {
