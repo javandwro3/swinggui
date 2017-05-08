@@ -77,6 +77,31 @@ public class CarWindow extends JFrame {
 		btnCreateCar.setLocation(400,400);
 		add(btnCreateCar);
 
+		JButton btnSaveChanges = new JButton("Zapisz zmiany");
+		btnSaveChanges.setSize(200,50);
+		btnSaveChanges.setLocation(400,500);
+		add(btnSaveChanges);
+
+		btnSaveChanges.addActionListener(new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String model = txtModel.getText();
+				String brand = txtBrand.getText();
+				String year = txtYear.getText();
+				double power = Double.parseDouble(txtPower.getText());
+
+				Car selectedCar = carsJList.getSelectedValue();
+				selectedCar.setBrand(brand);
+				selectedCar.setModel(model);
+				selectedCar.setManufactureYear(year);
+				selectedCar.setPower(power);
+
+				carsJList.repaint();
+				// lub
+				updateCarsListData();
+			}
+		});
+
 		btnCreateCar.addActionListener(new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -88,12 +113,9 @@ public class CarWindow extends JFrame {
 				Car car = new Car(brand, model, year, power);
 
 				carRepository.getCars().add(car);
-
 				updateCarsListData();
 			}
 		});
-
-
 
 		btnShow.addActionListener(new AbstractAction() {
 			@Override
