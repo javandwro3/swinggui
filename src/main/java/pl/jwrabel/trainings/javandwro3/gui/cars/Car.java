@@ -19,12 +19,7 @@ public class Car {
 
 	@Override
 	public String toString() {
-		return "Car{" +
-				"brand='" + brand + '\'' +
-				", model='" + model + '\'' +
-				", manufactureYear='" + manufactureYear + '\'' +
-				", power=" + power +
-				'}';
+		return brand + ", " + model + ", " + manufactureYear + ", " + power;
 	}
 
 	public String getBrand() {

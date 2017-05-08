@@ -20,13 +20,18 @@ public class CarWindow extends JFrame {
 
 		List<Car> cars = carRepository.getCars();
 
+		// "ZAMIANA" listy na tablicę
+		Car[] carsArray = new Car[cars.size()];
+		for (int i = 0; i < carsArray.length; i++) {
+			carsArray[i] = cars.get(i);
+		}
 
-		String[] data = new String[]{"A", "B", "C"};
-		JList<String> jList = new JList<>(data);
+		JList<Car> jList = new JList<>(carsArray);
 		jList.setSize(200, 300);
 		jList.setLocation(0, 0);
 		add(jList);
 
+		Car selectedValue = jList.getSelectedValue();
 	}
 
 	public static void main(String[] args) {
