@@ -1,6 +1,7 @@
 package pl.jwrabel.trainings.javandwro3.gui.cars;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.util.List;
 
 /**
@@ -31,7 +32,23 @@ public class CarWindow extends JFrame {
 		jList.setLocation(0, 0);
 		add(jList);
 
-		Car selectedValue = jList.getSelectedValue();
+		JButton btnShow = new JButton("Pokaż");
+		btnShow.setSize(200, 50);
+		btnShow.setLocation(0, 350);
+		add(btnShow);
+
+		btnShow.addActionListener(new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Car selectedCar = jList.getSelectedValue();
+				System.out.println(selectedCar);
+
+				JOptionPane.showMessageDialog(btnShow, selectedCar);
+			}
+		});
+
+
+
 	}
 
 	public static void main(String[] args) {
