@@ -23,6 +23,10 @@ public class CarRepository {
 	}
 
 	public void saveToFile() {
+		///
+		for (Car car : cars) {
+			///
+		}
 
 	}
 }
