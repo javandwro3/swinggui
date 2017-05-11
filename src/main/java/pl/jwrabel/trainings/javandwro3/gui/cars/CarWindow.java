@@ -76,14 +76,28 @@ public class CarWindow extends JFrame {
 		add(txtPower);
 
 		JButton btnCreateCar = new JButton("Stwórz nowy");
-		btnCreateCar.setSize(200,50);
-		btnCreateCar.setLocation(400,400);
+		btnCreateCar.setSize(200, 50);
+		btnCreateCar.setLocation(400, 400);
 		add(btnCreateCar);
 
 		JButton btnSaveChanges = new JButton("Zapisz zmiany");
-		btnSaveChanges.setSize(200,50);
-		btnSaveChanges.setLocation(400,500);
+		btnSaveChanges.setSize(200, 50);
+		btnSaveChanges.setLocation(400, 500);
 		add(btnSaveChanges);
+
+		JButton btnSaveToFile = new JButton("Zapisz do pliku");
+		btnSaveToFile.setSize(200, 50);
+		btnSaveToFile.setLocation(0, 400);
+		add(btnSaveToFile);
+
+		btnSaveToFile.addActionListener(new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				carRepository.saveToFile();
+			}
+		});
+
+
 
 		btnSaveChanges.addActionListener(new AbstractAction() {
 			@Override
@@ -102,7 +116,6 @@ public class CarWindow extends JFrame {
 				carsJList.repaint();
 				// lub
 				updateCarsListData();
-
 
 
 			}
@@ -149,6 +162,10 @@ public class CarWindow extends JFrame {
 		repaint();
 	}
 
+	public static void main(String[] args) {
+		new CarWindow();
+	}
+
 	private void updateCarsListData() {
 		List<Car> carsFromRepository = carRepository.getCars();
 
@@ -160,7 +177,5 @@ public class CarWindow extends JFrame {
 		carsJList.setListData(carsArray);
 	}
 
-	public static void main(String[] args) {
-		new CarWindow();
-	}
+
 }

@@ -21,4 +21,8 @@ public class CarRepository {
 	public List<Car> getCars() {
 		return cars;
 	}
+
+	public void saveToFile() {
+
+	}
 }
