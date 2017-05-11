@@ -26,6 +26,8 @@ public class CarRepository {
 		///
 		for (Car car : cars) {
 			///
+
+			System.out.println("Car >" + car + "<");
 		}
 
 	}
