@@ -9,8 +9,17 @@ public class Car {
 	private String manufactureYear;
 	private double power;
 
-	public Car(String brand, String model, String manufactureYear, double power) {
+	// "Ford,Mondeo,2001,100"
+	public Car(String text) {
+		String[] split = text.split(",");
 
+		this.brand = split[0];
+		this.model = split[1];
+		this.manufactureYear = split[2];
+		this.power = Double.parseDouble(split[3]);
+	}
+
+	public Car(String brand, String model, String manufactureYear, double power) {
 		this.brand = brand;
 		this.model = model;
 		this.manufactureYear = manufactureYear;

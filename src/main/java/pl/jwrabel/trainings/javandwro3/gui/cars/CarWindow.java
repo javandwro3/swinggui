@@ -88,6 +88,23 @@ public class CarWindow extends JFrame {
 		btnSaveToFile.setLocation(0, 400);
 		add(btnSaveToFile);
 
+		JButton btnReadFromFile = new JButton("Wczytaj z pliku");
+		btnReadFromFile.setSize(200, 50);
+		btnReadFromFile.setLocation(0, 450);
+		add(btnReadFromFile);
+
+		btnReadFromFile.addActionListener(new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					carRepository.readFromFile();
+				} catch (IOException e1) {
+					JOptionPane.showMessageDialog(carsJList, "Nie udało się wczytać danych z pliku",
+							"Błąd wczytywania z pliku", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+
 		btnSaveToFile.addActionListener(new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

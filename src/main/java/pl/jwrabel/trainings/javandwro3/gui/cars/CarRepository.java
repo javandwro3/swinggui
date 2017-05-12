@@ -37,4 +37,26 @@ public class CarRepository {
 		}
 
 	}
+
+	public void readFromFile() throws IOException {
+		List<String> fileLines = Files.readLines(new File("cars.csv"), Charsets.UTF_8);
+
+//		this.cars.clear();
+//		for (String fileLine : fileLines) {
+//			Car car = new Car(fileLine);
+//			this.cars.add(car);
+//		}
+
+		// LUB
+
+
+		List<Car> carsList = new ArrayList<>();
+
+		for (String fileLine : fileLines) {
+			Car car = new Car(fileLine);
+			carsList.add(car);
+		}
+
+		this.cars = carsList;
+	}
 }
