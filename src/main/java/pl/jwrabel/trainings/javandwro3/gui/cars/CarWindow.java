@@ -2,6 +2,7 @@ package pl.jwrabel.trainings.javandwro3.gui.cars;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -24,9 +25,6 @@ public class CarWindow extends JFrame {
 		carsJList.setSize(200, 300);
 		carsJList.setLocation(0, 0);
 		add(carsJList);
-
-		// WYSWIETLANIE KOMUNIKATU BŁĘDU
-		JOptionPane.showMessageDialog(carsJList, "ZŁE DANE", "BŁĄD", JOptionPane.ERROR_MESSAGE);
 
 		updateCarsListData();
 
@@ -93,10 +91,16 @@ public class CarWindow extends JFrame {
 		btnSaveToFile.addActionListener(new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				carRepository.saveToFile();
+				try {
+					carRepository.saveToFile();
+				} catch (IOException e1) {
+					// WYSWIETLANIE KOMUNIKATU BŁĘDU
+					JOptionPane.showMessageDialog(carsJList, "Nie udało się zapisać repozytorium do pliku",
+							"Błąd zapisu do pliku", JOptionPane.ERROR_MESSAGE);
+
+				}
 			}
 		});
-
 
 
 		btnSaveChanges.addActionListener(new AbstractAction() {

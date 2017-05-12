@@ -1,5 +1,12 @@
 package pl.jwrabel.trainings.javandwro3.gui.cars;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.CharSink;
+import com.google.common.io.FileWriteMode;
+import com.google.common.io.Files;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,12 +29,11 @@ public class CarRepository {
 		return cars;
 	}
 
-	public void saveToFile() {
-		///
-		for (Car car : cars) {
-			///
+	public void saveToFile() throws IOException {
+		CharSink carsCharSink = Files.asCharSink(new File("cars.csv"), Charsets.UTF_8, FileWriteMode.APPEND);
 
-			System.out.println("Car >" + car + "<");
+		for (Car car : cars) {
+			carsCharSink.write(car.toString() + "\n");
 		}
 
 	}
