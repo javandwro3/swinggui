@@ -93,6 +93,20 @@ public class CarWindow extends JFrame {
 		btnReadFromFile.setLocation(0, 450);
 		add(btnReadFromFile);
 
+		JButton btnDeleteCar = new JButton("Usuń samochód");
+		btnDeleteCar.setSize(200, 50);
+		btnDeleteCar.setLocation(0, 500);
+		add(btnDeleteCar);
+
+		btnDeleteCar.addActionListener(new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Car selectedCar = carsJList.getSelectedValue();
+				carRepository.getCars().remove(selectedCar);
+				updateCarsListData();
+			}
+		});
+
 		btnReadFromFile.addActionListener(new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
