@@ -6,6 +6,7 @@ import com.google.common.io.FileWriteMode;
 import com.google.common.io.Files;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,11 @@ public class CarRepository {
 	}
 
 	public void saveToFile() throws IOException {
+		// Wyczyszczenie pliku
+		FileOutputStream fileOutputStream = new FileOutputStream("cars.csv");
+		fileOutputStream.close();
+
+		// Zapisanie danych do pliku
 		CharSink carsCharSink = Files.asCharSink(new File("cars.csv"), Charsets.UTF_8, FileWriteMode.APPEND);
 
 		for (Car car : cars) {

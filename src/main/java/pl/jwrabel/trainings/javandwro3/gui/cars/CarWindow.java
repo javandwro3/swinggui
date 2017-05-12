@@ -98,6 +98,7 @@ public class CarWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					carRepository.readFromFile();
+					updateCarsListData();
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(carsJList, "Nie udało się wczytać danych z pliku",
 							"Błąd wczytywania z pliku", JOptionPane.ERROR_MESSAGE);
@@ -156,6 +157,8 @@ public class CarWindow extends JFrame {
 				updateCarsListData();
 			}
 		});
+
+
 
 		btnShow.addActionListener(new AbstractAction() {
 			@Override
